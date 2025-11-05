@@ -1,0 +1,18 @@
+/* Asegura que la animación del sidebar funcione correctamente */
+nav {
+  will-change: transform;
+}
+
+/* En pantallas grandes, el menú está fijo y no se oculta automáticamente */
+@media (min-width: 768px) {
+  nav {
+    transform: translateX(0) !important;
+  }
+}
+
+/* En móviles, el menú empieza oculto */
+@media (max-width: 768px) {
+  nav {
+    transform: translateX(-100%);
+  }
+}

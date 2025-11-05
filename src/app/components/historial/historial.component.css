@@ -1,0 +1,15 @@
+nav {
+  will-change: transform;
+}
+
+@media (min-width: 768px) {
+  nav {
+    transform: translateX(0) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  nav {
+    transform: translateX(-100%);
+  }
+}

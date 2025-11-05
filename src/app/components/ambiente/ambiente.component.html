@@ -1,0 +1,134 @@
+<div class="flex h-screen overflow-hidden">
+
+  <!-- Sidebar -->
+  <nav
+    class="bg-gray-900 text-white w-64 p-4 flex flex-col fixed transform transition-transform duration-300 z-40 h-full"
+    [ngClass]="{
+      'translate-x-0': sidebarVisible,
+      '-translate-x-full': !sidebarVisible
+    }"
+  >
+    <!-- Encabezado del menú -->
+    <div class="relative flex items-center justify-between">
+      <h2 class="text-2xl font-bold flex items-center gap-2">
+        <i class="fas fa-seedling text-green-400"></i> Panel IoT
+      </h2>
+
+      <!-- Botón cerrar -->
+      <button
+        (click)="toggleSidebar()"
+        class="absolute right-2 top-1 text-red-500 hover:text-red-600 text-4xl font-extrabold z-50 transition-transform transform hover:scale-125"
+        title="Cerrar menú"
+      >
+        ✕
+      </button>
+    </div>
+
+    <!-- Opciones -->
+    <ul class="mt-8 flex-1 space-y-2">
+      <li>
+        <a routerLink="/dashboard" class="flex items-center gap-3 py-2 px-3 rounded hover:bg-gray-700 transition">
+          <i class="fas fa-tachometer-alt w-6"></i>Dashboard
+        </a>
+      </li>
+      <li>
+        <a routerLink="/ambiente" class="flex items-center gap-3 py-2 px-3 rounded hover:bg-gray-700 transition">
+          <i class="fas fa-cloud-sun w-6"></i>Ambiente
+        </a>
+      </li>
+      <li>
+        <a routerLink="/riego" class="flex items-center gap-3 py-2 px-3 rounded hover:bg-gray-700 transition">
+          <i class="fas fa-water w-6"></i>Riego
+        </a>
+      </li>
+      <li>
+        <a routerLink="/nutrientes" class="flex items-center gap-3 py-2 px-3 rounded hover:bg-gray-700 transition">
+          <i class="fas fa-leaf w-6"></i>Nutrientes
+        </a>
+      </li>
+      <li>
+        <a routerLink="/equipos" class="flex items-center gap-3 py-2 px-3 rounded hover:bg-gray-700 transition">
+          <i class="fas fa-cogs w-6"></i>Equipos
+        </a>
+      </li>
+      <li>
+        <a routerLink="/historial" class="flex items-center gap-3 py-2 px-3 rounded hover:bg-gray-700 transition">
+          <i class="fas fa-history w-6"></i>Historial
+        </a>
+      </li>
+      <li>
+        <a routerLink="/alertas" class="flex items-center gap-3 py-2 px-3 rounded hover:bg-gray-700 transition">
+          <i class="fas fa-exclamation-triangle w-6"></i>Alertas
+        </a>
+      </li>
+      <li>
+        <a routerLink="/config" class="flex items-center gap-3 py-2 px-3 rounded hover:bg-gray-700 transition">
+          <i class="fas fa-cog w-6"></i>Configuración
+        </a>
+      </li>
+    </ul>
+
+    <div class="mt-auto text-center">
+      <p class="text-gray-400 text-sm">© 2025 SmartGrow</p>
+    </div>
+  </nav>
+
+  <!-- Botón hamburguesa flotante cuando el menú está cerrado -->
+  <button
+    *ngIf="!sidebarVisible"
+    (click)="toggleSidebar()"
+    class="fixed top-6 left-6 z-30 flex items-center justify-center w-10 h-10 
+           bg-gray-900/80 text-green-400 rounded-full shadow-md 
+           border border-green-400/30 hover:bg-gray-800/90 
+           hover:text-green-300 hover:scale-110 hover:shadow-green-500/40 
+           backdrop-blur-md transition-all duration-300"
+    title="Abrir menú"
+  >
+    <i class="fas fa-bars text-xl"></i>
+  </button>
+
+  <!-- Contenido principal -->
+  <div
+    class="flex-1 flex flex-col p-6 overflow-y-auto transition-all duration-300"
+    [ngClass]="{ 'md:ml-64': sidebarVisible, 'ml-0': !sidebarVisible }"
+  >
+    <div class="mb-4">
+      <h1 class="text-3xl font-bold">Ambiente</h1>
+    </div>
+
+    <h1 class="text-4xl font-bold text-center mb-2">Control Ambiental</h1>
+    <p class="text-center text-xl text-gray-600 mb-8">Monitoreo de condiciones ambientales</p>
+
+    <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      <div class="bg-white rounded-2xl shadow p-6 text-center">
+        <i class="fas fa-thermometer-half text-red-500 text-4xl mb-2"></i>
+        <h2 class="text-2xl font-semibold">Temperatura</h2>
+        <p id="tempAmbiente" class="text-3xl font-bold text-gray-700 mt-2">-- °C</p>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow p-6 text-center">
+        <i class="fas fa-tint text-blue-500 text-4xl mb-2"></i>
+        <h2 class="text-2xl font-semibold">Humedad Relativa</h2>
+        <p id="humAmbiente" class="text-3xl font-bold text-gray-700 mt-2">-- %</p>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow p-6 text-center">
+        <i class="fas fa-wind text-gray-500 text-4xl mb-2"></i>
+        <h2 class="text-2xl font-semibold">CO₂</h2>
+        <p id="co2" class="text-3xl font-bold text-gray-700 mt-2">-- ppm</p>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow p-6 text-center">
+        <i class="fas fa-sun text-yellow-500 text-4xl mb-2"></i>
+        <h2 class="text-2xl font-semibold">Luminosidad</h2>
+        <p id="luminosidad" class="text-3xl font-bold text-gray-700 mt-2">-- lux</p>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow p-6 text-center">
+        <i class="fas fa-wind text-blue-400 text-4xl mb-2"></i>
+        <h2 class="text-2xl font-semibold">Viento</h2>
+        <p id="viento" class="text-3xl font-bold text-gray-700 mt-2">-- km/h</p>
+      </div>
+    </div>
+  </div>
+</div>
