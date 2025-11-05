@@ -1,13 +1,18 @@
 import { CommonEngine } from '@angular/ssr/node';
-import { render } from '@netlify/angular-runtime/common-engine';
+import { render } from '@netlify/angular-runtime/common-engine.mjs';
 
-// Crea una instancia del motor SSR de Angular
 const commonEngine = new CommonEngine();
 
 /**
- * Manejador (handler) que usa Netlify para renderizar SSR.
- * No usa Express, solo Request y Response nativos.
+ * Netlify SSR handler para Angular 19
  */
-export default async function handler(request: Request, context: any): Promise<Response> {
-  return render(commonEngine, request, context);
+export async function netlifyCommonEngineHandler(request: Request, context: any): Promise<Response> {
+  // Ejemplo opcional: agregar endpoints API personalizados:
+  // const pathname = new URL(request.url).pathname;
+  // if (pathname === '/api/hello') {
+  //   return Response.json({ message: 'Hola desde la API' });
+  // }
+
+  // Renderiza la aplicación Angular SSR
+  return await render(commonEngine);
 }
