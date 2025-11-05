@@ -1,8 +1,7 @@
 [build]
   command = "ng build --configuration production"
   publish = "dist/frontend/browser"
+  functions = "netlify/functions"
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+[[plugins]]
+  package = "@netlify/angular-runtime"
